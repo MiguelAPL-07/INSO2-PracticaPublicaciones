@@ -5,13 +5,13 @@
  */
 package controller;
 
-import EJB.CategoriasFacadeLocal;
+import EJB.CategoriaFacadeLocal;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
-import modelo.Categorias;
+import modelo.Categoria;
 
 /**
  *
@@ -21,21 +21,21 @@ import modelo.Categorias;
 @Named
 @ViewScoped
 public class AltaCategoriaController implements Serializable {
-    private Categorias categoria;
+    private Categoria categoria;
     
     @EJB
-    private CategoriasFacadeLocal categoriasEJB;
+    private CategoriaFacadeLocal categoriasEJB;
     
     @PostConstruct
     public void init() {
-        categoria = new Categorias();
+        categoria = new Categoria();
     }
 
-    public Categorias getCategoria() {
+    public Categoria getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(Categorias categoria) {
+    public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
     

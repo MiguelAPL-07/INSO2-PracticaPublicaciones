@@ -21,7 +21,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="categorias")
-public class Categorias implements Serializable {
+public class Categoria implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -77,7 +77,7 @@ public class Categorias implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Categorias other = (Categorias) obj;
+        final Categoria other = (Categoria) obj;
         if (this.idCategoria != other.idCategoria) {
             return false;
         }

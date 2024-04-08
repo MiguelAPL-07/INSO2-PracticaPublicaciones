@@ -8,14 +8,14 @@ package EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import modelo.Categorias;
+import modelo.Categoria;
 
 /**
  *
  * @author PC
  */
 @Stateless
-public class CategoriasFacade extends AbstractFacade<Categorias> implements CategoriasFacadeLocal {
+public class CategoriaFacade extends AbstractFacade<Categoria> implements CategoriaFacadeLocal {
 
     @PersistenceContext(unitName = "PublicacionesPU")
     private EntityManager em;
@@ -25,8 +25,8 @@ public class CategoriasFacade extends AbstractFacade<Categorias> implements Cate
         return em;
     }
 
-    public CategoriasFacade() {
-        super(Categorias.class);
+    public CategoriaFacade() {
+        super(Categoria.class);
     }
     
 }
