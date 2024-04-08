@@ -21,6 +21,7 @@ import modelo.Categoria;
 @Named
 @ViewScoped
 public class AltaCategoriaController implements Serializable {
+    
     private Categoria categoria;
     
     @EJB
@@ -38,8 +39,6 @@ public class AltaCategoriaController implements Serializable {
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
-    
-    
     
     public void insertarCategoria(){
         try {
