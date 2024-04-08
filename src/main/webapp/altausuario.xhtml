@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Nuevo usuario</title>
+    </h:head>
+    
+    <h:outputScript library="js" name="spanishcalendar.js"/>
+    
+    <h:body>
+        <h:form>
+            <h1>UNIVERSIDAD DE LEÓN</h1>
+            <p:panelGrid columns="2" layout="grid">
+                <p:fieldset legend="Datos personales">
+                    <p:panelGrid columns="3">
+                        <p:outputLabel value="Nombre:" for="nombre" />
+                        <p:inputText value="#[usuarioController.persona.nombre}" required="true"
+                                     requiredMessage="Nombre es un campo obligatorio"
+                                     id="nombre" />
+                        <p:message for="nombre" />
+
+                        <p:outputLabel value="Primer appellido:" for="apellido1" />
+                        <p:inputText value="" required="true"
+                                     requiredMessage="Primer apellido obligatorio"
+                                     id="apellido1" />
+                        <p:message for="apellido1" />
+
+                        <p:outputLabel value="Segundo apellido:" for="apellido2" />
+                        <p:inputText value="" required="true"
+                                     requiredMessage="Segundo apellido obligatorio"
+                                     id="apellido2" size="20"/>
+                        <p:message for="apellido2" />
+
+                        <p:outputLabel value="Sexo:" for="sexo" />
+                        <p:selectOneButton value="" id="sexo">
+                            <f:selectItem itemLabel="Masculino" itemValue="M"/>
+                            <f:selectItem itemLabel="Femenino" itemValue="F"/>
+                        </p:selectOneButton>
+                        
+                        <div />
+
+                        <p:outputLabel value="Fecha de nacimiento:" for="fechaNac" />
+                        <p:calendar id="fechaNac" required="true" 
+                                    requiredMessage="Fecha de nacimiento obligatoria" 
+                                    value=""
+                                    locale="es"/>
+                        <p:message for="fechaNac" />
+
+                    </p:panelGrid>
+                </p:fieldset>
+
+                <p:fieldset legend="Datos de acceso">
+                    <p:panelGrid columns="3">
+
+                        <p:outputLabel value="Rol:" for="rol" />
+                        <p:selectOneMenu id="rol" value="">
+                            <f:selectItem itemLabel="Seleccione Rol" itemValue="#{null}" noSelectionOption="true"/>
+                            <f:selectItem itemLabel="Profesor" itemValue="P"/>
+                            <f:selectItem itemLabel="Alumno" itemValue="A"/>
+                            <f:selectItem itemLabel="Superusuario" itemValue="O"/>
+                        </p:selectOneMenu>
+                        <p:message for="rol" />
+
+                        <p:outputLabel value="Nombre de usuario:" for="usuario" />
+                        <p:inputText value="" required="true"
+                                     requiredMessage="Nombre de usuario obligatorio"
+                                     id="usuario" />
+                        <p:message for="usuario" />
+
+                        <p:outputLabel value="Contraseña:" for="pass1" />
+                        <p:password id="pass1" value="" match="pass2" 
+                                    label="Contraseña" required="true" toggleMask="true"
+                                    requiredMessage="La contraseña es obligatoria"/>
+                        <p:message for="pass1" />
+
+                        <p:outputLabel value="Repita contraseña:" for="pass2" />
+                        <p:password id="pass2" value="" label="Repita contraseña" 
+                                    required="true" toggleMask="true"
+                                    requiredMessage="Es obligatorio repetir la contraseña"/>
+                        <p:message for="pass2" />
+
+                    </p:panelGrid>  
+
+                </p:fieldset>
+            </p:panelGrid>
+            
+            <p:panelGrid columns="1" style="display:block; text-align:center">
+                <p:commandButton value="Registrar" />
+            </p:panelGrid>
+        </h:form>
+    </h:body>
+</html>
