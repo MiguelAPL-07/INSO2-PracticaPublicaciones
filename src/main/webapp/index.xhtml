@@ -8,10 +8,25 @@
     </h:head>
     <h:body>
         <h:form>
-            <p:outputLabel value="Introcuzca nombre de categoria" />
-            <p:inputText value="#{altaCategoriaController.categoria.nombreCategoria}"/>
-            <p:commandButton value="Insertar" actionListener="#{altaCategoriaController.insertarCategoria()}" />
-            <p:commandLink action="altausuario?faces-redirect=true" value="Ver alta usuario"/>
+            
+            <p:panelGrid id="panel" columns="1">
+                <p:outputLabel value="Usuario" for="usuario" />
+                <p:inputText value="#{indexController.usuario.usuario}" 
+                            id="usuario" />
+                <p:message for="usuario" />
+
+                <p:outputLabel value="Contraseña:" for="pass" />
+                <p:password id="pass" value="#{indexController.usuario.contrasena}"
+                            />
+                <p:message for="pass" /> 
+            </p:panelGrid>
+            
+            <p:panelGrid>
+                <p:commandButton action="#{indexController.verificarUsuario()}" value="Iniciar sesion"/>
+            </p:panelGrid>
+            
+                
+            
         </h:form>
     </h:body>
 </html>
