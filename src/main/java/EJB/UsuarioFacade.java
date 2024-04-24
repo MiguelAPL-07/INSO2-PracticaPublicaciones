@@ -33,25 +33,28 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
 
     @Override
     public Usuario verificarUsuario(Usuario usuario) {
-        
-        // Consulta que se quiere realizar
-        String consulta = "FROM Usuarios u WHERE u.user=:param1 and u.password=:param2";
-        
-        // Crear consulta
-        Query query = em.createQuery(consulta);
-        
-        // Cambiar parametros del WHERE
-        query.setParameter("param1", usuario.getUsuario());
-        query.setParameter("param2", usuario.getContrasena());
-        
-        // Ejecutar consulta
-        List<Usuario> resultado = query.getResultList();
-        
         Usuario r = null;
-        if(resultado.size() > 0) {
-            r = resultado.get(0);
+        try {
+            // Consulta que se quiere realizar
+            String consulta = "FROM Usuario u WHERE u.usuario=:param1 and u.contrasena=:param2";
+
+            // Crear consulta
+            Query query = em.createQuery(consulta);
+
+            // Cambiar parametros del WHERE
+            query.setParameter("param1", usuario.getUsuario());
+            query.setParameter("param2", usuario.getContrasena());
+
+            // Ejecutar consulta
+            List<Usuario> resultado = query.getResultList();
+
+            
+            if(resultado.size() > 0) {
+                r = resultado.get(0);
+            }
+        } catch (Exception e) {
+            System.out.println(e.toString());
         }
-        
         return r;
     }
 }
