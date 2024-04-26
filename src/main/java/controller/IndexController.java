@@ -40,7 +40,8 @@ public class IndexController implements Serializable {
             Usuario r = usuarioEJB.verificarUsuario(usuario);
             if(r != null) {
                 // Existe el usuario: se loggea
-                //FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", r);
+                // Guardar datos del usuario de forma global
+                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", r);
                 navegacion = "privado/inicio.xhtml?faces-redirect=true";
             } else {
                 // No existe el usuario: permisos insuficientes
