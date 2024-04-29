@@ -23,7 +23,8 @@ public class PlantillaController implements Serializable {
         try {
             Object usuario = FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
             if(usuario == null) {
-                FacesContext.getCurrentInstance().getExternalContext().redirect("Pagina");
+                String rutaRelativa = FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath() + "/publico/permisosinsuficientes.xhtml?faces-redirect=true";
+                FacesContext.getCurrentInstance().getExternalContext().redirect(rutaRelativa);
             }
         } catch (IOException e) {
             System.out.println(e.toString());
