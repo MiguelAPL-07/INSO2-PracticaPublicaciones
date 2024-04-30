@@ -4,31 +4,28 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Iniciar sesión</title>
+        <h:outputStylesheet library="css" name="index.css" />
     </h:head>
-    <h:body>
+    <h:body id="principal">
         <h:form id="loginForm">
-            
-            <p:panel id="panel">
-                
-            
-            
+            <h1>Inicio de sesión</h1>
+            <div id="usuario">
                 <p:panelGrid>
-                    <p:outputLabel value="Usuario" for="usuario" />
-                    <p:inputText value="#{indexController.usuario.usuario}" 
-                                id="usuario" required="true" requiredMessage="Introduce una contrasena" />
-                    <p:message for="usuario" />
+                    <p:fieldset legend="Credenciales">
+                         <p:outputLabel value="Usuario" for="user" />
+                        <p:inputText value="#{indexController.usuario.usuario}" 
+                                    id="user" required="true" requiredMessage="Introduce una contrasena" />
+                        <p:message for="user" />
 
-                    <p:outputLabel value="Contraseña:" for="pass" />
-                    <p:password id="pass" value="#{indexController.usuario.contrasena}"
-                                required="true" requiredMessage="Introduce una contrasena" />
-                    <p:message for="pass" /> 
-
+                        <p:outputLabel value="Contraseña" for="pass" />
+                        <p:password id="pass" value="#{indexController.usuario.contrasena}"
+                                    required="true" requiredMessage="Introduce una contrasena" />
+                        <p:message for="pass" /> 
+                    </p:fieldset>
                     <p:commandButton value="Iniciar sesion" update="loginForm" action="#{indexController.verificarUsuario()}" />
                 </p:panelGrid>
-            
-            </p:panel>>
-            
+            </div>
         </h:form>
     </h:body>
 </html>

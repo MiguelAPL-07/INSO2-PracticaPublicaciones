@@ -21,7 +21,13 @@
 
         <div id="top">
             <ui:insert name="top">
-                <p:menubar model="#{menuController.modelo}"></p:menubar>
+                <p:menubar model="#{menuController.modelo}">
+                    <f:facet name="options">
+                        <h:form>
+                            <p:commandButton value="Cerrar sesion" actionListener="#{menuController.destruriSesionActual()}" />
+                        </h:form>
+                    </f:facet>
+                </p:menubar>
             </ui:insert>
         </div>
 
