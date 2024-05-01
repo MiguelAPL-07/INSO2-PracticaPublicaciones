@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/template/plantillaPublicaciones.xhtml">
+
+            <ui:define name="content">
+                <h1>Listado de publicaciones</h1>
+                <h:form>
+                   
+                    <p:panelGrid>
+                        
+                        <p:dataTable var="pub" value="#{listarPublicacionesController.publicacionesBD}">
+                            
+                            <p:column headerText="Fecha de publicación" style="width: 150px">
+                                <h:outputText value="#{pub.fecha}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                </h:outputText>
+                            </p:column>
+                            
+                            <p:column headerText="Titulo" style="width: 150px">
+                                <h:outputText value="#{pub.titulo}" />
+                            </p:column>
+                            
+                            <p:column headerText="Nombre Autor" style="width: 150px">
+                                <h:outputText value="#{pub.persona.nombre}, #{pub.persona.apellido1}, #{pub.persona.apellido2}" />
+                            </p:column>
+
+                            <p:column headerText="Valorar" style="width: 100px">
+                                <h:commandLink action="valorarpublicacion"
+                                               actionListener="#{listarPublicacionesController.establecerPublicacion(pub)}">
+                                    <h:graphicImage library="img" name="editar.png" width="30px" />
+                                </h:commandLink>
+                            </p:column>
+                            
+                        </p:dataTable>
+                        
+                    </p:panelGrid>
+                    
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
