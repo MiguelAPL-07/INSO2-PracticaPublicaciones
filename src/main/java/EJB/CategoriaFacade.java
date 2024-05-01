@@ -5,6 +5,7 @@
  */
 package EJB;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -12,7 +13,7 @@ import modelo.Categoria;
 
 /**
  *
- * @author PC
+ * @author Miguel Ángel
  */
 @Stateless
 public class CategoriaFacade extends AbstractFacade<Categoria> implements CategoriaFacadeLocal {
@@ -28,5 +29,16 @@ public class CategoriaFacade extends AbstractFacade<Categoria> implements Catego
     public CategoriaFacade() {
         super(Categoria.class);
     }
-    
+
+    @Override
+    public Categoria findByName(String nombre) {
+        Categoria categoria = new Categoria();
+        List<Categoria> categorias = findAll();
+        for(Categoria cActual : categorias) {
+            if(cActual.getNombreCategoria().equals(nombre)) {
+                categoria = cActual;
+            }
+        }
+        return categoria;
+    } 
 }

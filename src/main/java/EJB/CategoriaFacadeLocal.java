@@ -30,4 +30,5 @@ public interface CategoriaFacadeLocal {
 
     int count();
     
+    Categoria findByName(String nombre);
 }
