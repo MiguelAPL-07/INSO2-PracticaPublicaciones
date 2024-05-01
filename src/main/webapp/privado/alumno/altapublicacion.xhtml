@@ -12,7 +12,7 @@
 
             <ui:define name="content">
                 <h1>Nueva publicación</h1>
-                <h:form>
+                <h:form id="form">
                     <p:panelGrid id="panel" columns="1" layout="grid">
                         <p:fieldset legend="Datos publicacion">
                             <p:panelGrid columns="3">
@@ -43,8 +43,10 @@
                     <p:panelGrid id="panel2" columns="1" style="display:block; text-align:center">
                         <p:commandButton value="Añadir" 
                                          actionListener="#{altaPublicacionController.insertarPublicacion()}"
-                                         update="panel"/>
+                                         update="panel, form"/>
                     </p:panelGrid>
+                    
+                    <p:messages id="msg" severity="info, fatal" closable="true" />
                 </h:form>
             </ui:define>
 

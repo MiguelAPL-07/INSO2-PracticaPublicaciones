@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/template/plantillaPublicaciones.xhtml">
+
+            <ui:define name="content">
+                <h:form>
+                    <h1>Editar publicacion de: #{editarPublicacionController.publicacion.titulo}</h1>
+                    <h2>Escrita por: #{editarPublicacionController.publicacion.persona.nombre}</h2>
+                    
+                    <p:panelGrid>
+                        
+                        <p:fieldset legend="Datos de la publicación">
+                            
+                            <p:panelGrid>
+                                
+                                <p:outputLabel value="Cuerpo" for="cuerpo" />
+                                <p:inputTextarea rows="5" cols="30" id="cuerpo" required="true"
+                                                 requiredMessage="Obligatorio"
+                                                 value="#{editarPublicacionController.publicacion.cuerpo}" />
+                                <p:message for="cuerpo" />
+                                
+                                <p:outputLabel value="Categoria" for="categoria" />
+                                <p:selectOneMenu id="categoria" value="#{editarPublicacionController.nombreCategoria}">
+                                    <f:selectItems value="#{editarPublicacionController.categorias}" />
+                                </p:selectOneMenu>
+                                <p:message for="categoria" />
+                                
+                                
+                            </p:panelGrid>
+                            
+                        </p:fieldset>
+                        
+                        <p:fieldset legend="Valoración del profesor">
+                            
+                            <p:panelGrid>
+                                
+                                <p:outputLabel value="Valoracion" for="valoracion" />
+                                <p:rating value="#{editarPublicacionController.publicacion.valoracion}" id="valoracion" />
+                                <p:message for="valoracion" />
+                                
+                                <p:outputLabel value="Comentario" for="comentario" />
+                                <p:inputTextarea rows="5" cols="30" id="comentario"
+                                                 value="#{editarPublicacionController.publicacion.comentarioProfesor}" />
+                                <p:message for="comentario" />
+                                
+                            </p:panelGrid>
+                            
+                        </p:fieldset>
+                            
+                    </p:panelGrid>
+                    
+                    <p:panelGrid>
+                        <p:commandButton action="#{editarPublicacionController.actualizarPublicacion()}" value="Guardar cambios" />
+                    </p:panelGrid>
+                    
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
