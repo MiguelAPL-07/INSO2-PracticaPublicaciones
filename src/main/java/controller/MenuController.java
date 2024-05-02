@@ -61,7 +61,7 @@ public class MenuController implements Serializable {
                         // Se comprueba si es hijo del submenu
                         if(restoMenus.getMenu().getIdMenu() == mActual.getIdMenu()) {
                             // Es hijo. Se agrega al submenu
-                            DefaultMenuItem item = DefaultMenuItem.builder().value(restoMenus.getNombre()).url(restoMenus.getUrl()).build();
+                            DefaultMenuItem item = DefaultMenuItem.builder().value(restoMenus.getNombre()).url("/PracticaPublicaciones/faces" + restoMenus.getUrl()).build();
                             submenu.getElements().add(item);
                         }
                     }
@@ -72,7 +72,7 @@ public class MenuController implements Serializable {
                 // Es de tipo item, se comprueba si tiene padre
                 if(mActual.getMenu()==null) {
                     // No tiene padre, se crea el item
-                    DefaultMenuItem item = DefaultMenuItem.builder().value(mActual.getNombre()).url(mActual.getUrl()).build();
+                    DefaultMenuItem item = DefaultMenuItem.builder().value(mActual.getNombre()).url("/PracticaPublicaciones/faces" + mActual.getUrl()).build();
                     // Se agrega al model
                     modeloUsuario.getElements().add(item);
                 }

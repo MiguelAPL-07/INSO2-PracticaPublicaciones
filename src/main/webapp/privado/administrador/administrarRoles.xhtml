@@ -13,37 +13,42 @@
                 <h1>Administrar roles</h1>
                 <h:form id="formPrincipal">
                     
-                    <p:dataTable id="tablaRoles" var="r" value="#{administrarRolesController.listaRolesBD}">
+                    <p:dataTable id="tablaRoles" var="rol" value="#{administrarRolesController.listaRolesBD}"
+                                 rows="10"
+                                 paginator="true" paginatorPosition="both"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                                 rowsPerPageTemplate="5,10,{ShowAll|'All'}">
                      
                         <p:column headerText="Identificador">
-                            <h:outputText value="#{r.idRol}" />
+                            <h:outputText value="#{rol.idRol}" />
                         </p:column>
 
                         <p:column headerText="Tipo de Rol">
-                            <h:outputText value="#{r.tipoUsuario}" />
+                            <h:outputText value="#{rol.tipoUsuario}" />
                         </p:column>
 
                         <p:column headerText="Descripción del rol">
-                            <h:outputText value="#{r.descripcion}" />
+                            <h:outputText value="#{rol.descripcion}" />
                         </p:column>
 
                         <p:column headerText="Modificar Rol">
                             <p:commandLink value="Modificar" 
-                                           update=":formDialog:dialogo"
-                                           oncomplete="PF(wdialogo).show();"
-                                           actionListener="#{administrarRolesController.establecerRolModificar(r)}" />
+                                           update=":formDialogo:dialogo"
+                                           oncomplete="PF('wdialogo').show();"
+                                           actionListener="#{administrarRolesController.establecerRolModificar(rol)}" />
                         </p:column>
                         
                         <p:column headerText="Eliminar Rol">
                              <p:commandLink value="Eliminar" 
-                                           update=":formDialog:dialogo"
-                                           oncomplete="PF(wdialogo).show();"
-                                           actionListener="#{administrarRolesController.establecerRolEliminar(r)}" />
+                                           update=":formDialogo:dialogo"
+                                           oncomplete="PF('wdialogo').show();"
+                                           actionListener="#{administrarRolesController.establecerRolEliminar(rol)}" />
                         </p:column>
 
                     </p:dataTable>
                     
-                    <p:commandButton value="Nuevo" oncomplete="PF(wdialogo).show();"
+                    <p:commandButton value="Nuevo" oncomplete="PF('wdialogo').show();"
                                      actionListener="#{administrarRolesController.establecerRolInsertar()}"
                                      update=":formDialogo:dialogo">
                         <i class="pi pi-plus-circle" style="font-size: 3em" />
@@ -60,10 +65,16 @@
                         <p:panelGrid columns="2">
                             
                             <p:outputLabel value="Tipo de rol" />
-                            <p:inputText />
+                            <p:inputText maxlength="1" value="#{administrarRolesController.rol.tipoUsuario}"
+                                         rendered="#{administrarRolesController.accion == 'I' || administrarRolesController.accion == 'M'}"/>
+                            <p:outputLabel value="#{administrarRolesController.rol.tipoUsuario}" 
+                                           rendered="#{administrarRolesController.accion == 'E'}" />
                             
                             <p:outputLabel value="Descripción del rol" />
-                            <p:inputText />
+                            <p:inputText value="#{administrarRolesController.rol.descripcion}" 
+                                         rendered="#{administrarRolesController.accion == 'I' || administrarRolesController.accion == 'M'}" />
+                            <p:outputLabel value="#{administrarRolesController.rol.descripcion}" 
+                                           rendered="#{administrarRolesController.accion == 'E'}" />
                             
                             <p:commandButton value="Insertar" actionListener="#{administrarRolesController.insertarRol()}"
                                              update=":formPrincipal:tablaRoles" oncomplete="PF('wdialogo').hide();"
@@ -77,7 +88,7 @@
                                              update=":formPrincipal:tablaRoles" oncomplete="PF('wdialogo').hide();" 
                                              rendered="#{administrarRolesController.accion=='E'}"/>
                             
-                            <p:commandButton value="Cancelar" onclick="PF('wdialogo').hide();" />
+                            <p:commandButton value="Cancelar" onclick="PF('wdialogo1').hide();" />
                             
                         </p:panelGrid>          
                         
