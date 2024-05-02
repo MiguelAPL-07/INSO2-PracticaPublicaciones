@@ -80,7 +80,7 @@ public class AdministrarRolesController implements Serializable {
             listaRolesBD = rolEJB.findAll();
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error al modificar", "Error al modificar el rol"));
-            System.out.println("Error al eliminar el rol " + e.getMessage());
+            System.out.println("Error al modificar el rol " + e.getMessage());
         }
     }
     
