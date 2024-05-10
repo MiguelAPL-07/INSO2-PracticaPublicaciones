@@ -30,7 +30,7 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
     public UsuarioFacade() {
         super(Usuario.class);
     }
-
+    
     @Override
     public Usuario verificarUsuario(Usuario usuario) {
         Usuario r = null;

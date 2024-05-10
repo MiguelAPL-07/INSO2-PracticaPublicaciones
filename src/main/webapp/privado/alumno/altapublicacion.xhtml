@@ -43,10 +43,13 @@
                     <p:panelGrid id="panel2" columns="1" style="display:block; text-align:center">
                         <p:commandButton value="Añadir" 
                                          actionListener="#{altaPublicacionController.insertarPublicacion()}"
-                                         update="panel, form"/>
+                                         update="panel, panel3"/>
                     </p:panelGrid>
                     
-                    <p:messages id="msg" severity="info, fatal" closable="true" />
+                    <p:panelGrid id="panel3">
+                        <p:messages id="msg" severity="info, fatal" closable="true" />
+                    </p:panelGrid>
+                    
                 </h:form>
             </ui:define>
 

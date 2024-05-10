@@ -16,7 +16,7 @@ import modelo.Usuario;
 
 /**
  *
- * @author PC
+ * @author Miguel Ángel
  */
 @Stateless
 public class MenuFacade extends AbstractFacade<Menu> implements MenuFacadeLocal {
@@ -32,7 +32,7 @@ public class MenuFacade extends AbstractFacade<Menu> implements MenuFacadeLocal 
     public MenuFacade() {
         super(Menu.class);
     }
-
+    
     @Override
     public List<Menu> obtenerMenusUsuario(Usuario usuario) {
         List<Menu> resultado = new ArrayList<>();
@@ -49,5 +49,5 @@ public class MenuFacade extends AbstractFacade<Menu> implements MenuFacadeLocal 
             System.out.println(e.toString());
         }
         return resultado;
-    } 
+    }
 }

@@ -27,6 +27,7 @@ import modelo.Usuario;
  *
  * @author Miguel Ángel
  */
+
 @Named
 @ViewScoped
 public class AltaPublicacionController implements Serializable {
@@ -73,7 +74,7 @@ public class AltaPublicacionController implements Serializable {
             publicacionEJB.create(publicacion);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Registro correcto", "Publicación registrada correctamente"));
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error al registrar", "Error al registrar la publicación"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, e.getMessage(), "Error al registrar la publicación"));
             System.out.println("Error al insertar la publicación " + e.getMessage());
         }
     }

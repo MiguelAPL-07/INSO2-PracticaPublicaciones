@@ -29,7 +29,7 @@ public class CategoriaFacade extends AbstractFacade<Categoria> implements Catego
     public CategoriaFacade() {
         super(Categoria.class);
     }
-
+    
     @Override
     public Categoria findByName(String nombre) {
         Categoria categoria = new Categoria();
