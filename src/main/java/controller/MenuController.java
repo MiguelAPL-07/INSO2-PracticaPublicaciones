@@ -81,7 +81,7 @@ public class MenuController implements Serializable {
         return modeloUsuario;
     }
     
-    public void destruriSesionActual() {
+    public void destrurirSesionActual() {
         try {
             // Se destruye la sesion del usuario
             FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
