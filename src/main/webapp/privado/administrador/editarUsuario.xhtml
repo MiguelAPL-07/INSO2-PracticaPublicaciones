@@ -15,7 +15,7 @@
             <ui:define name="content">
                 <h:form id="formPrincipal">
                     <h1>Edicición de usuarios</h1>
-                    <h2>Estás editand el usuario de: 
+                    <h2>Estás editando el usuario de: 
                         <em>
                             #{editarUsuarioController.persona.nombre}
                             #{editarUsuarioController.persona.apellido1} 
@@ -97,8 +97,10 @@
 
                     <p:panelGrid id="panel2" columns="1" style="display:block; text-align:center">
                         <p:commandButton value="Modificar" 
-                                         actionListener="#{editarUsuarioController.editarUsuario()}"
+                                         action="#{editarUsuarioController.editarUsuario()}"
                                          update="panel"/>
+                        <p:commandButton value="Cancelar" 
+                                         action="#{editarUsuarioController.volverListarUsuarios()}"/>
                     </p:panelGrid>
                 </h:form>
             </ui:define>
@@ -107,4 +109,3 @@
 
     </body>
 </html>
-a

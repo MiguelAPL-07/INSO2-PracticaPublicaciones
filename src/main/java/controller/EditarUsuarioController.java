@@ -82,6 +82,11 @@ public class EditarUsuarioController implements Serializable {
         
         return navegacion;
     }
+    
+    public String volverListarUsuarios() {
+        String rutaRelativa = FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath() + "/privado/administraor/listarUsuarios.xhtml?faces-redirect=true";
+        return rutaRelativa;
+    }
 
     public ListarUsuariosController getListUserCon() {
         return listUserCon;

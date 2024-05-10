@@ -24,7 +24,7 @@ import modelo.Usuario;
 
 @Named
 @RequestScoped
-public class ListarUsuariosController implements Serializable {
+public class ListarUsuariosController {
     
     @EJB
     private UsuarioFacadeLocal usuarioEJB;

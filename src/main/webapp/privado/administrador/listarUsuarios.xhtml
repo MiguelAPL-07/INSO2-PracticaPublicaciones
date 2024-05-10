@@ -15,7 +15,7 @@
                 <h1>Lista de usuarios</h1>
                 <h:form id="formPrincipal">
                     
-                    <p:dataTable id="tablaUsuario" var="user" value="#{listarUsuariosController.usuarios}"
+                    <p:dataTable id="tablaUsuarios" var="user" value="#{listarUsuariosController.usuarios}"
                                  rows="10"
                                  paginator="true" paginatorPosition="both"
                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -45,7 +45,7 @@
                         <p:column headerText="Modificar Usuario">
                             <p:commandLink value="Modificar" 
                                            action="editarUsuario.xhtml"
-                                           actionListener="#{listarUsuariosController.establecerUsuario(user)}" />
+                                           actionListener="#{listarUsuariosController.establecerUsuario(user)}"/>
                         </p:column>
                         
                         <p:column headerText="Eliminar Usuario">
@@ -55,11 +55,11 @@
 
                     </p:dataTable>
                     
-
+                    <p:panelGrid id="paneMsg">
+                        <p:messages id="msg" severity="info, fatal" closable="true" />
+                    </p:panelGrid>
                     
                 </h:form>
-                
-                
                 
             </ui:define>
 
