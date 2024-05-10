@@ -11,11 +11,10 @@
         <ui:composition template="./../../WEB-INF/template/plantillaPublicaciones.xhtml">
 
             <ui:define name="content">
-                
+                <h1>Listado de tus publicaciones</h1>
                 <h:form>
-                    
-                   <h1>Listado de todas las publicaciones</h1>
-                   <p:dataTable id="tablaPublicaciones" var="pub" value="#{listarPublicacionesController.publicacionesBD}"
+                   
+                    <p:dataTable id="tablaPublicaciones" var="pub" value="#{listarPublicacionesController.publicacionesBDUsuario}"
                                  rows="10"
                                  paginator="true" paginatorPosition="both"
                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -36,10 +35,25 @@
                             <h:outputText value="#{pub.persona.nombre}, #{pub.persona.apellido1}, #{pub.persona.apellido2}" />
                         </p:column>
 
+                        <p:column headerText="Modificar publicaciones">
+                            <h:commandLink value="Modificar"
+                                           action="editarPublicacionAlumno.xhtml"
+                                           actionListener="#{listarPublicacionesController.establecerPublicacion(pub)}">
+                                <h:graphicImage library="img" name="editar.png" width="30px" />
+                            </h:commandLink>
+                        </p:column>
+                        
+                        <p:column headerText="Eliminiar publicaciones">
+                            <p:commandLink value="Eliminar" actionListener="#{listarPublicacionesController.eliminarPublicacion(pub)}" />
+                        </p:column>
+
                     </p:dataTable>
-                   
+                    
+                    <p:panelGrid id="panelMsg">
+                        <p:messages id="msg" severity="info, fatal" closable="true" />
+                    </p:panelGrid>
+                        
                 </h:form>
-                
             </ui:define>
 
         </ui:composition>
