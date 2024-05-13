@@ -34,7 +34,7 @@ public class PublicacionFacade extends AbstractFacade<Publicacion> implements Pu
     }
 
     @Override
-    public List<Publicacion> obtenerPublicacionesUusuario(Usuario usuario) {
+    public List<Publicacion> obtenerPublicacionesUsuario(Usuario usuario) {
         List<Publicacion> publicaciones = new ArrayList<>();
         try {
             // Consulta que se quiere realizar
@@ -54,5 +54,66 @@ public class PublicacionFacade extends AbstractFacade<Publicacion> implements Pu
         }
         return publicaciones;
     }
+    
+    @Override
+    public List<Publicacion> obtenerPublicacionesPorCategoria(String nombre) {
+        List<Publicacion> publicaciones = new ArrayList<>();
+        try {
+            // Consulta que se quiere realizar
+            String consulta = "FROM Publicacion p WHERE p.categoria.nombreCategoria=:param1";
+            
+            // Crear consulta
+            Query query = em.createQuery(consulta);
+            
+            // Cambiar parametros del WHERE
+            query.setParameter("param1", nombre);
+            
+            // Ejecutar consulta
+            publicaciones = query.getResultList();
+            
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        return publicaciones;
+    }
+
+    @Override
+    public List<Publicacion> obtenerPublicacionesPorValoracionAsc() {
+        List<Publicacion> publicaciones = new ArrayList<>();
+        try {
+            // Consulta que se quiere realizar
+            String consulta = "FROM Publicacion p ORDER BY valoracion ASC";
+            
+            // Crear consulta
+            Query query = em.createQuery(consulta);
+            
+            // Ejecutar consulta
+            publicaciones = query.getResultList();
+            
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        return publicaciones;
+    }
+
+    @Override
+    public List<Publicacion> obtenerPublicacionesPorValoracionDesc() {
+        List<Publicacion> publicaciones = new ArrayList<>();
+        try {
+            // Consulta que se quiere realizar
+            String consulta = "FROM Publicacion p ORDER BY valoracion DESC";
+            
+            // Crear consulta
+            Query query = em.createQuery(consulta);
+            
+            // Ejecutar consulta
+            publicaciones = query.getResultList();
+            
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        return publicaciones;
+    }
+    
     
 }

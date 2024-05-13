@@ -31,5 +31,11 @@ public interface PublicacionFacadeLocal {
 
     int count();
     
-    List<Publicacion> obtenerPublicacionesUusuario(Usuario usuario);
+    List<Publicacion> obtenerPublicacionesUsuario(Usuario usuario);
+    
+    List<Publicacion> obtenerPublicacionesPorCategoria(String nombre);
+    
+    List<Publicacion> obtenerPublicacionesPorValoracionAsc();
+    
+    List<Publicacion> obtenerPublicacionesPorValoracionDesc();
 }

@@ -15,7 +15,15 @@
                 <h:form>
                     
                    <h1>Listado de todas las publicaciones</h1>
-                   <p:dataTable id="tablaPublicaciones" var="pub" value="#{listarPublicacionesController.publicacionesBD}"
+                   
+                   <p:outputLabel value="Categoria" for="categoria" />
+                   <p:selectOneMenu id="categoria" value="#{listarPublicacionesController.nombreCategoria}" onchange="#{listarPublicacionesController.filtrarListaCategoria()}">
+                       <f:selectItems value="#{listarPublicacionesController.categorias}" />
+                    </p:selectOneMenu>
+                    <p:message for="categoria" />
+                   
+                   
+                   <p:dataTable id="tablaPublicaciones" var="pub" value="#{listarPublicacionesController.publicacionesBDCategoria}"
                                  rows="10"
                                  paginator="true" paginatorPosition="both"
                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -34,6 +42,10 @@
 
                         <p:column headerText="Nombre Autor">
                             <h:outputText value="#{pub.persona.nombre}, #{pub.persona.apellido1}, #{pub.persona.apellido2}" />
+                        </p:column>
+                       
+                       <p:column headerText="Categoria">
+                           <h:outputText value="#{pub.categoria.nombreCategoria}" />
                         </p:column>
 
                     </p:dataTable>

@@ -1,14 +1,58 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
 
         <ui:composition template="./../../WEB-INF/template/plantillaPublicaciones.xhtml">
 
             <ui:define name="content">
-                content
+                
+                <h:form>
+                    
+                   <h1>Listado de todas las publicaciones</h1>
+                   
+                   <p:panelGrid columns="2">
+                       <p:commandButton value="De más a menos" 
+                                        action="#{listarPublicacionesController.filtrarListaValoracionMejorAPeor()}" />
+                       <p:commandButton value="De menos a más" 
+                                        action="#{listarPublicacionesController.filtrarListaValoracionPeorAMejor()}" />
+                   </p:panelGrid>
+                   
+                   
+                   <p:dataTable id="tablaPublicaciones" var="pub" value="#{listarPublicacionesController.publicacionesBDValoracion}"
+                                 rows="10"
+                                 paginator="true" paginatorPosition="both"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 currentPageReportTemplate="{startRecord}-{endRecord} de {totalRecords} publicaciones"
+                                 rowsPerPageTemplate="5,10,{ShowAll|'Todas'}">
+
+                        <p:column headerText="Fecha de publicación">
+                            <h:outputText value="#{pub.fecha}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+
+                        <p:column headerText="Titulo">
+                            <h:outputText value="#{pub.titulo}" />
+                        </p:column>
+
+                        <p:column headerText="Nombre Autor">
+                            <h:outputText value="#{pub.persona.nombre}, #{pub.persona.apellido1}, #{pub.persona.apellido2}" />
+                        </p:column>
+                       
+                       <p:column headerText="Valoracion">
+                           <h:outputText value="#{pub.valoracion}" />
+                        </p:column>
+
+                    </p:dataTable>
+                   
+                </h:form>
+                
             </ui:define>
 
         </ui:composition>
