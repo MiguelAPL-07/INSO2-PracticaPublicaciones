@@ -8,6 +8,7 @@ package controller;
 import EJB.CategoriaFacadeLocal;
 import EJB.PublicacionFacadeLocal;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import javax.annotation.PostConstruct;
@@ -19,6 +20,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import modelo.Categoria;
 import modelo.Publicacion;
+import modelo.Usuario;
 
 /**
  *
@@ -55,6 +57,8 @@ public class EditarPublicacionController implements Serializable {
         // Se actualiza la categoria de la publicacion
         nombreCategoria = publicacion.getCategoria().getNombreCategoria();
         
+        categorias = new ArrayList<>();
+        
         // Recupera todas las categorias de la base de datos
         List<Categoria> categoriasBD = categoriaEJB.findAll();
         for(Categoria cActual : categoriasBD) {
@@ -63,7 +67,17 @@ public class EditarPublicacionController implements Serializable {
     } 
     
     public String actualizarPublicacion() {
-        String navegacion = "listarPublicaciones.xhtml";
+        String navegacion = "";
+        
+        Usuario usuarioActual = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+        
+        // Verifica si el usuario es profesor o alumno
+        if(usuarioActual.getRol().getIdRol() == 2) {
+            navegacion = "administrarPublicaciones.xhtml";
+        } else {
+            navegacion = "leerPublicaciones.xhtml";
+        }
+        
         try {
             // Actualizamos la categoria seleccionada
             publicacion.setCategoria(categoriaEJB.findByName(nombreCategoria));

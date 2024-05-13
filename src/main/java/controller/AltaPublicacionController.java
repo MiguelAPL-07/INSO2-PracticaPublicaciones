@@ -63,7 +63,8 @@ public class AltaPublicacionController implements Serializable {
     }
     
     // Titulo, cuerpo, fecha, idPersona(Objeto), idCategoria(Objeto)
-    public void insertarPublicacion() {
+    public String insertarPublicacion() {
+        String navegacion = "administrarPublicaciones.xhtml";
         publicacion.setCategoria(categoriaEJB.findByName(nombreCategoria));
         // Se coge el usuario actual de la variable global
         Usuario usuarioActual = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
@@ -77,6 +78,7 @@ public class AltaPublicacionController implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, e.getMessage(), "Error al registrar la publicación"));
             System.out.println("Error al insertar la publicación " + e.getMessage());
         }
+        return navegacion;
     }
 
     public UsuarioFacadeLocal getUsuarioEJB() {

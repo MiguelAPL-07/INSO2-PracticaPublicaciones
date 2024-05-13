@@ -8,6 +8,7 @@ package EJB;
 import java.util.List;
 import javax.ejb.Local;
 import modelo.Publicacion;
+import modelo.Usuario;
 
 /**
  *
@@ -30,4 +31,5 @@ public interface PublicacionFacadeLocal {
 
     int count();
     
+    List<Publicacion> obtenerPublicacionesUusuario(Usuario usuario);
 }
